@@ -1,0 +1,100 @@
+<!DOCTYPE HTML><html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <style>
+    html {
+    
+     display: inline-block;
+     margin: 0px auto;
+     text-align: center;
+    }
+    h2 { font-size: 2.5rem; }
+    p { font-size: 1.5rem; }
+    .units { font-size: .9rem; }
+    .dht-labels{
+      font-size: 1.5rem;
+      vertical-align:middle;
+      padding-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Temperature & Humidity control For Incubator</h2>
+  <p>
+   
+    <span class="dht-labels">Temperature</span> 
+    <span id="temperature">%TEMPERATURE%</span>
+    
+
+  </p>
+ <p>
+   
+    <span class="dht-labels">Humidity</span> 
+    <span id="humidity">%HUMIDITY%</span>
+    
+
+  </p>
+
+  <p>
+    
+    <span class="dht-labels">Heater is ON</span> 
+    <span id="bulb">%BULB%</span>
+    
+  </p>
+<p>
+    
+    <span class="dht-labels">Cooler is ON</span> 
+    <span id="fan">%FAN%</span>
+    
+  </p>
+
+</body>
+<script>
+setInterval(function ( ) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("temperature").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "/temperature", true);
+  xhttp.send();
+}, 10000 ) ;
+
+setInterval(function ( ) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("humidity").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "/humidity", true);
+  xhttp.send();
+}, 10000 ) ;
+
+setInterval(function ( ) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("bulb").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "/bulb", true);
+  xhttp.send();
+}, 10000 )
+ 
+setInterval(function ( ) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("fan").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "/fan", true);
+  xhttp.send();
+}, 10000 )
+
+
+</script>
+</html>
